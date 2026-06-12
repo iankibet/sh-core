@@ -1,0 +1,50 @@
+{
+  "name": "@iankibetsh/sh-core",
+  "version": "1.0.0",
+  "description": "Core JS layer for sh frameworks: API client, auth (bearer/cookie strategies), pinia stores, streamline, swal notifications and helpers. UI-library free.",
+  "type": "module",
+  "main": "./dist/sh-core.cjs.js",
+  "module": "./dist/sh-core.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/sh-core.es.js",
+      "require": "./dist/sh-core.cjs.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch"
+  },
+  "keywords": [
+    "vue",
+    "laravel",
+    "auth",
+    "streamline"
+  ],
+  "author": "Iankibet",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.17.0",
+    "luxon": "^3.7.2",
+    "sweetalert2": "^11.26.25"
+  },
+  "peerDependencies": {
+    "pinia": "^3",
+    "vue": "^3.5",
+    "vue-router": "^4 || ^5"
+  },
+  "peerDependenciesMeta": {
+    "vue-router": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "vite": "^8"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
