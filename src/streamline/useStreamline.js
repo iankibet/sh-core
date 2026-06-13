@@ -4,6 +4,28 @@ import { runPlainRequest } from '../notify/swal.js'
 import { getShConfig } from '../config.js'
 import Cache from './cache.js'
 
+/**
+ * Standalone utility to resolve streamline action format to URL
+ * @param {string} action - Action string (e.g., "auth/users:createUser")
+ * @param {string} streamlineUrl - Base streamline endpoint URL
+ * @returns {string} - Full streamline URL with query parameters
+ */
+export function getActionUrlForStreamline (action, streamlineUrl) {
+    let resolvedStream = ''
+    let resolvedAction = action
+
+    if (action.includes(':')) {
+        [resolvedStream, resolvedAction] = action.split(':')
+    }
+
+    const post = {
+        action: resolvedAction,
+        stream: resolvedStream
+    }
+
+    return `${streamlineUrl}?${new URLSearchParams(post).toString()}`
+}
+
 const useStreamline = (stream, ...initialArgs) => {
     const formData = {}
     const loading = ref(false)
@@ -129,12 +151,12 @@ const useStreamline = (stream, ...initialArgs) => {
         if (action.includes(':')) {
             [newStream, action] = action.split(':')
         }
-        const post = {
-            action,
-            stream: newStream,
-            params: args
+        const baseUrl = getActionUrlForStreamline(`${newStream}:${action}`, streamlineUrl)
+        // If args provided, append them to params
+        if (args.length > 0) {
+            return baseUrl + `&params=${encodeURIComponent(JSON.stringify(args))}`
         }
-        return `${streamlineUrl}?${new URLSearchParams(post).toString()}`
+        return baseUrl
     }
 
     const service = reactive({})
