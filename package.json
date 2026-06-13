@@ -9,7 +9,8 @@
     ".": {
       "import": "./dist/sh-core.es.js",
       "require": "./dist/sh-core.cjs.js"
-    }
+    },
+    "./style.css": "./dist/sh-core.css"
   },
   "files": [
     "dist"

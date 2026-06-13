@@ -1,3 +1,6 @@
+// Bundled into dist/sh-core.css; consumers import '@iankibetsh/sh-core/style.css'
+import 'sweetalert2/dist/sweetalert2.css'
+import './style.css'
 import shApis from './api/shApis.js'
 import shStorage from './utils/storage.js'
 import shRepo from './shRepo.js'

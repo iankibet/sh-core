@@ -6,7 +6,8 @@ export default defineConfig({
             entry: './src/index.js',
             name: 'ShCore',
             formats: ['es', 'cjs'],
-            fileName: (format) => `sh-core.${format}.js`
+            fileName: (format) => `sh-core.${format}.js`,
+            cssFileName: 'sh-core'
         },
         rollupOptions: {
             external: ['vue', 'pinia', 'vue-router', 'axios', 'sweetalert2', 'luxon'],
