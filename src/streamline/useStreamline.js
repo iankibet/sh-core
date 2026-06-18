@@ -26,6 +26,34 @@ export function getActionUrlForStreamline (action, streamlineUrl) {
     return `${streamlineUrl}?${new URLSearchParams(post).toString()}`
 }
 
+function appendQueryParam (query, key, value) {
+    if (Array.isArray(value)) {
+        value.forEach((childValue, index) => {
+            appendQueryParam(query, `${key}[${index}]`, childValue)
+        })
+        return
+    }
+
+    if (value && typeof value === 'object') {
+        Object.entries(value).forEach(([childKey, childValue]) => {
+            appendQueryParam(query, `${key}[${childKey}]`, childValue)
+        })
+        return
+    }
+
+    query.append(key, value ?? '')
+}
+
+function buildParamsQuery (args) {
+    const query = new URLSearchParams()
+
+    args.forEach((arg, index) => {
+        appendQueryParam(query, `params[${index}]`, arg)
+    })
+
+    return query.toString()
+}
+
 const useStreamline = (stream, ...initialArgs) => {
     const formData = {}
     const loading = ref(false)
@@ -154,7 +182,7 @@ const useStreamline = (stream, ...initialArgs) => {
         const baseUrl = getActionUrlForStreamline(`${newStream}:${action}`, streamlineUrl)
         // If args provided, append them to params
         if (args.length > 0) {
-            return baseUrl + `&params=${encodeURIComponent(JSON.stringify(args))}`
+            return `${baseUrl}&${buildParamsQuery(args)}`
         }
         return baseUrl
     }

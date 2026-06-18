@@ -1,6 +1,6 @@
 {
   "name": "@iankibetsh/sh-core",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Core JS layer for sh frameworks: API client, auth (bearer/cookie strategies), pinia stores, streamline, swal notifications and helpers. UI-library free.",
   "type": "module",
   "main": "./dist/sh-core.cjs.js",
