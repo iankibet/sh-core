@@ -1,6 +1,6 @@
 {
   "name": "@iankibetsh/sh-core",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Core JS layer for sh frameworks: API client, auth (bearer/cookie strategies), pinia stores, streamline, swal notifications and helpers. UI-library free.",
   "type": "module",
   "main": "./dist/sh-core.cjs.js",
@@ -33,7 +33,7 @@
     "sweetalert2": "^11.26.25"
   },
   "peerDependencies": {
-    "pinia": "^3",
+    "pinia": "^3 || ^4",
     "vue": "^3.5",
     "vue-router": "^4 || ^5"
   },
