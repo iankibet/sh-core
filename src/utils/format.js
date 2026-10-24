@@ -29,6 +29,7 @@ export function formatDate (date, format) {
     let dt
     if (typeof date === 'string' || date instanceof String) {
         dt = DateTime.fromISO(date)
+        if (!dt.isValid) dt = DateTime.fromSQL(date)
         if (!dt.isValid) dt = DateTime.fromRFC2822(date)
         if (!dt.isValid) dt = DateTime.fromFormat(date, 'yyyy-MM-dd')
     } else if (date instanceof Date) {
