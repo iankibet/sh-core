@@ -6,10 +6,13 @@ import { getActionUrlForStreamline } from '../streamline/useStreamline.js'
 // touching and 401 handling now live in the shared client interceptors.
 
 /**
- * Detects if endPoint is a streamline action format (contains :)
+ * Detects the 'stream:action' shorthand. Full URLs ('https://…', '//…')
+ * also contain ':' and must pass through untouched.
  */
 function isStreamlineAction (endPoint) {
-    return typeof endPoint === 'string' && endPoint.includes(':')
+    return typeof endPoint === 'string'
+        && endPoint.includes(':')
+        && !endPoint.includes('//')
 }
 
 /**
